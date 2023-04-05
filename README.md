@@ -21,14 +21,14 @@ The clip can be downloaded and shared on social media platforms.
 Technologies Used
 This project was built using the following technologies:
 
-Python
-Flask
-Tweepy
-MoviePy
-Pillow
-TweetCapture
-selenium
-ReactJS
+- Python
+- Flask
+- Tweepy
+- MoviePy
+- Pillow
+- TweetCapture
+- selenium
+- ReactJS
 
 # License
 This project is licensed under the MIT License. See the LICENSE file for more information.
