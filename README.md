@@ -30,13 +30,13 @@ This project was built using the following technologies:
 - selenium
 - ReactJS
 
-# License
+## License
 This project is licensed under the MIT License. See the LICENSE file for more information.
 
-Contributors
+## Contributors
 Oluwapelumi Olalekan [Twitter]() [Github](https://github.com/pelumi-guy)
 
-Acknowledgements
+## Acknowledgements
 Thank you to the creators of Tweepy, MoviePy, and Pillow for their amazing libraries.
 
 Special thanks to my mentors for providing guidance and support throughout this project.
