@@ -11,6 +11,7 @@ from os import remove
 from os.path import isfile
 from PIL import Image
 from moviepy.editor import ImageClip, clips_array, VideoFileClip
+import logging
 
 class TweetClipper:
 
@@ -66,8 +67,8 @@ class TweetClipper:
                 break
 
         if variants is None:
-            return None
-            # raise RuntimeError('Tweet does not have video of gif attachment')
+            raise RuntimeError(f'{tweet_id}: Tweet does not have video or gif attachment')
+            # return None
 
         if media_type == 'video':
             video_path = self.__download_video(variants, tweet_id, size)
@@ -122,6 +123,9 @@ class TweetClipper:
         m4s_pathname = f'video_{tweet_id}.m4s'
         mp4_pathname = f'video_{tweet_id}.mp4'
 
+        if isfile(mp4_pathname):
+            remove(mp4_pathname)
+
         with open(m4s_pathname, "wb") as f:
             f.write(r_init.content)
             for segment in playlist.data['segments']:
@@ -131,9 +135,9 @@ class TweetClipper:
         try:
             subprocess.run(['ffmpeg', '-i', m4s_pathname, mp4_pathname], capture_output=True, text=True)
         except subprocess.CalledProcessError as e:
-            print(e)
+            # print(e)
             remove(m4s_pathname)
-            raise RuntimeError('video download failed: could not convert to mp4')
+            raise RuntimeError(f'{tweet_id}: video download failed: could not convert to mp4')
 
         remove(m4s_pathname)
 
@@ -204,14 +208,14 @@ class TweetClipper:
             night_mode (int): the dark mode to make
         """
         tweet = self.__get_tweet(tweet_id)
-        if tweet is None:
-            return
+        # if tweet is None:
+        #     return
 
         # Paths to temp files
         screenshot_path = None
         resized_screenshot = None
         footer = None
-        video_file = None
+        # video_file = None
 
         username = tweet.get('username')
         tweet_time = tweet.get('time')
@@ -272,6 +276,8 @@ class TweetClipper:
 
         except:
             self.clean_temp_files(screenshot_path, resized_screenshot, footer, video_file)
+            raise RuntimeError(f'{tweet_id}: Clip generation failed')
+
 
         self.clean_temp_files(screenshot_path, resized_screenshot, footer, video_file)
 
@@ -283,7 +289,19 @@ if __name__ == '__main__':
     clipper = TweetClipper('keys.json')
 
     try:
-        clipper.generate_clip(1639683622138511363, night_mode=1, squared=True)
+        while True:
+            tweet_id = input('Enter tweet id: ')
+            night_mode = input('Enter night mode: ')
+            squared = input('To be squared or not [y/n]: ')
+            if squared.lower() == 'y':
+                squared = True
+            elif squared.lower() == 'n':
+                squared = False
+            clipper.generate_clip(tweet_id, night_mode=night_mode, squared=squared)
+            to_exit = input('Should exit [y/n]: ')
+
+            if to_exit == 'y':
+                break
     except Exception as e:
         clipper.close_screenshoter()
         raise e
