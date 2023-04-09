@@ -291,7 +291,7 @@ if __name__ == '__main__':
     try:
         while True:
             tweet_id = input('Enter tweet id: ')
-            night_mode = input('Enter night mode: ')
+            night_mode = int(input('Enter night mode: '))
             squared = input('To be squared or not [y/n]: ')
             if squared.lower() == 'y':
                 squared = True
