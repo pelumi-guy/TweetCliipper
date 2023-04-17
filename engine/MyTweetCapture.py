@@ -5,12 +5,13 @@ from tweetcapture.utils.webdriver import get_driver
 from tweetcapture.utils.utils import is_valid_tweet_url, get_tweet_file_name, add_corners
 from selenium.webdriver.common.by import By
 from PIL import Image
-from os import remove
+from os import remove, getenv
 from os.path import exists
 
 class MyTweetCapture(TweetCapture):
     mode = 0
     radius = 0
+    driver_path = getenv('CHROME_DRIVER')
 
     def __init__(self, mode=0, night_mode=0, test=False, show_parent_tweets=False, show_mentions_count=0, overwrite=True, radius=0):
         super().__init__(mode, night_mode, test, show_parent_tweets, show_mentions_count, overwrite, radius)
@@ -155,7 +156,7 @@ class MyTweetCapture(TweetCapture):
             try:
                 element = driver.find_element(By.XPATH, item)
                 driver.execute_script("""
-                arguments[0].style.display="none";
+                arguments[0].style.visibility="hidden";
                 """, element)
             except:
                 continue
@@ -189,6 +190,14 @@ class MyTweetCapture(TweetCapture):
             element.parent.execute_script("""
             arguments[0].style.lineHeight="25px";
                 """, tweet_text_element)
+
+    def __hide_other_tweets(self, element):
+        OTHERS_XPATH = ".//article[not(contains(@tabindex, '-1'))]"
+        tweet_elements = element.find_elements(By.XPATH, OTHERS_XPATH)
+        for tweet_element in tweet_elements:
+            element.parent.execute_script("""
+            arguments[0].style.visibility="hidden";
+                """, tweet_element)
 
     async def screenshot(self, url, path=None, mode=None, night_mode=None, show_parent_tweets=None, show_mentions_count=None, overwrite=None, radius=None):
         if is_valid_tweet_url(url) is False:
@@ -233,6 +242,7 @@ class MyTweetCapture(TweetCapture):
                             driver.execute_script(self.__code_footer_items(self.mode if mode is None else mode), element.find_element(By.CSS_SELECTOR, "div.r-1ta3fxp"), element.find_element(By.CSS_SELECTOR, ".r-1hdv0qi:first-of-type"))
                         except:
                             pass
+                    self.__hide_other_tweets(element)
                     self.__increase_font_size(element)
                     self.__hide_media(element, self.hide_link_previews, self.hide_photos, self.hide_videos, self.hide_gifs, self.hide_quotes)
                     if i == len(elements)-1:
@@ -310,12 +320,15 @@ if __name__ == '__main__':
         night_mode = int(input('Enter night mode: '))
         mode = int(input('Enter mode: '))
         save_as = input('Enter file name to save screenshot: ')
-        to_exit = input('Should exit [y/n]: ')
+
 
         run(tweet.screenshot(
                 f"{link}", f"{save_as}", mode=mode, night_mode=night_mode))
 
+        to_exit = input('Should exit [y/n]: ')
+
         if to_exit == 'y':
             break
 
+    # print(tweet.driver_path)
     tweet.close_driver()

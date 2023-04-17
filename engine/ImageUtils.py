@@ -148,11 +148,11 @@ class ImageUtils:
         base_color = cls.select_color(cls, night_mode)
         textColor = cls.black if night_mode == 0 else cls.white
         watermark_width = int(width * (6 / 25))
-        watermark_template = 'resources/light_mode.png' if night_mode == 0 else 'resources/dark_mode.png'
+        watermark_template = 'engine/resources/light_mode.png' if night_mode == 0 else 'engine/resources/dark_mode.png'
 
         footer = Image.new('RGB', (width, height), color=base_color)
         canvas = ImageDraw.Draw(footer)
-        chirpFont = ImageFont.truetype("resources/Chirp.ttf", text_size, encoding="utf-8")
+        chirpFont = ImageFont.truetype("engine/resources/Chirp.ttf", text_size, encoding="utf-8")
         canvas.text((int(0.03 * width), int(0.5 * height)), text, font=chirpFont, fill=textColor, anchor='lm')
 
         watermark = Image.open(watermark_template)
@@ -202,9 +202,15 @@ class ImageUtils:
         """
         video_width, video_height = video.size
         if video_width < video_height:
-            return video.resize(width=size)
+            height = video_height * size // video_width
+            if height % 2 != 0:
+                height -= 1
+            return video.resize((size, height))
         else:
-            return video.resize(height=size)
+            width = video_width * size // video_height
+            if width % 2 != 0:
+                width -= 1
+            return video.resize((width, size))
 
 
 
