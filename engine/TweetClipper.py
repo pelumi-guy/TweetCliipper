@@ -16,6 +16,7 @@ from PIL import Image
 from moviepy.editor import ImageClip, clips_array, VideoFileClip
 from multiprocessing import current_process
 
+
 class TweetClipper:
 
     __size = 'medium'
