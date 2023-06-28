@@ -6,7 +6,7 @@ A Twitter Bot for Generating Memeable Clips
 ## Overview
 TweetClipper is a Twitter bot project developed as part of the portfolio project for the Alx-Holberton School of Software Engineering. It generates memeable clips by combining videos from Twitter with the corresponding tweet. These clips can be easily shared on social media platforms.
 
-*Please note that the development and maintenance of this project has been suspended due to the new unfavorable pricing of the Twitter API.*
+***Please note that the development and maintenance of this project has been suspended due to the new unfavorable pricing of the Twitter API.***
 
 ## Installation
 To set up and run TweetClipper locally, follow these steps:
@@ -38,7 +38,7 @@ To use the TweetClipper web interface:
 3. The back-end web app will process the request and generate a memeable clip from the video and tweet.
 4. The clip can be downloaded and shared on social media platforms.
 
-*Please note that due to the suspended development and maintenance, the functionality of TweetClipper may not be fully operational.*
+***Please note that due to the suspended development and maintenance, the functionality of TweetClipper may not be fully operational.***
 
 ## Technologies Used
 This project was built using the following technologies:
