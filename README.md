@@ -11,16 +11,15 @@ TweetClipper is a Twitter bot project developed as part of the portfolio project
 ## Installation
 To set up and run TweetClipper locally, follow these steps:
 
-1. Clone the repository:
-    git clone ```https://github.com/pelumi-guy/TweetClipper.git```
+1. Clone the repository: <br />
+&ensp; ```git clone https://github.com/pelumi-guy/TweetClipper.git```
 
-2. Install the required dependencies:
-    pip install -r requirements.txt
+2. Install the required dependencies: <br />
+&ensp; ```pip install -r requirements.txt```
 
-
-3. Configure your Twitter API credentials:
-- Create a Twitter Developer account and set up an application.
-- Update the configuration file with your API credentials.
+3. Configure your Twitter API credentials: <br />
+    - Create a Twitter Developer account and set up an application.
+    - Update the configuration file with your API credentials.
 
 
 ## Usage
