@@ -1,24 +1,46 @@
 # TweetClipper
+<p align="center"><img src="tweet_clipper.png" /></p>
 
 A Twitter Bot for Generating Memeable Clips
 
 ## Overview
-TweetClipper generates memeable clips from videos on Twitter. It combines the video and tweet to create a new clip that can be easily shared on social media platforms.
+TweetClipper is a Twitter bot project developed as part of the portfolio project for the Alx-Holberton School of Software Engineering. It generates memeable clips by combining videos from Twitter with the corresponding tweet. These clips can be easily shared on social media platforms.
 
-The project consists of a Twitter bot that responds to users that mention it under a tweet that has a video or animated gif attachment. It also includes a front-end webpage where users can submit the link to the tweet they want to use, and a back-end that processes requests from the front-end.
+*Please note that the development and maintenance of this project has been suspended due to the new unfavorable pricing of the Twitter API.*
+
+## Installation
+To set up and run TweetClipper locally, follow these steps:
+
+1. Clone the repository:
+    git clone ```https://github.com/pelumi-guy/TweetClipper.git```
+
+2. Install the required dependencies:
+    pip install -r requirements.txt
+
+
+3. Configure your Twitter API credentials:
+- Create a Twitter Developer account and set up an application.
+- Update the configuration file with your API credentials.
+
 
 ## Usage
-There are two ways to use TweetClipper:
 
 ### Twitter Bot
-To use the twitter bot just go on twitter and mentions [@tweet_clipper]() under the tweet you like to capture as video.
+To use the TweetClipper Twitter bot:
+
+1. Mention [@tweet_clipper](https://twitter.com/tweet_clipper) under the tweet containing the video you'd like to capture.
 
 ### Webpage
-Go to the [webpage]() and paste the link to the tweet you want to use.
-Click the "Generate Clip" button.
-The back-end webapp will process the request and generate a memeable clip from the video and tweet.
-The clip can be downloaded and shared on social media platforms.
-Technologies Used
+To use the TweetClipper web interface:
+
+1. Visit the [webpage]() and paste the link to the tweet you want to use.
+2. Click the "Generate Clip" button.
+3. The back-end web app will process the request and generate a memeable clip from the video and tweet.
+4. The clip can be downloaded and shared on social media platforms.
+
+*Please note that due to the suspended development and maintenance, the functionality of TweetClipper may not be fully operational.*
+
+## Technologies Used
 This project was built using the following technologies:
 
 - Python
@@ -27,14 +49,17 @@ This project was built using the following technologies:
 - MoviePy
 - Pillow
 - TweetCapture
-- selenium
+- Selenium
 - ReactJS
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more information.
 
+## Demo
+You can find a samples of TweetClipper generated videos [here](https://github.com/pelumi-guy/TweetClipper/tree/main/samples)
+
 ## Contributors
-Oluwapelumi Olalekan [Twitter]() [Github](https://github.com/pelumi-guy)
+**Oluwapelumi Olalekan [Twitter](https://twitter.com/one_pelumi_guy) [Github](https://github.com/pelumi-guy)**
 
 ## Acknowledgements
 Thank you to the creators of Tweepy, MoviePy, and Pillow for their amazing libraries.
